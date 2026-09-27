@@ -27,6 +27,10 @@ A serverless platform project demonstrating event ingestion, queue-based decoupl
 | `docs/evidence/` | Validation and operational proof. |
 | `scripts/` | Repeatable validation commands. |
 
+## Continuous Validation
+
+GitHub Actions checks Terraform formatting and validation, verifies the handler contract, runs Node syntax checks and executes unit tests for normal and empty event batches.
+
 ## Validation
 
 ```powershell
