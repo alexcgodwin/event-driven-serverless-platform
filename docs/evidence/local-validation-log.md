@@ -1,6 +1,6 @@
 # Local Validation Log
 
-Validation mode: zero-cost local validation.
+Validation mode: controlled engineering validation.
 
 Checks performed:
 
@@ -12,4 +12,4 @@ Checks performed:
 
 Evidence statement:
 
-This repository proves the event-flow design, queue decoupling model, handler logic, audit path and dead-letter thinking. A live test can be performed later with one temporary event path and destroyed immediately after evidence capture.
+This project demonstrates the event-flow design, queue decoupling model, handler logic, audit path and dead-letter thinking. The same event workflow can be promoted into a live environment using the documented validation and cost-control workflow.

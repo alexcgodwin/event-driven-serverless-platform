@@ -17,13 +17,13 @@ flowchart TD
     B --> F[Dead Letter Queue]
 ```
 
-## What This Proves
+## What This Project Demonstrates
 
 - Serverless and event-driven architecture design.
 - Queue-based decoupling and retry thinking.
 - Function handler implementation.
 - Audit and dead-letter workflow awareness.
-- Near-zero idle cost model.
+- Cost-controlled serverless model with reusable validation evidence.
 
 ## Repository Structure
 
@@ -41,9 +41,9 @@ powershell -ExecutionPolicy Bypass -File scripts/validate.ps1
 
 ## Cost Control
 
-The project is designed around pay-per-use services with no idle compute. Live validation should use a small test event, capture output, then remove temporary resources.
+This project uses a controlled validation model: event flow, handler logic, audit output and failure handling are maintained from code while cost exposure is kept under control.
 
-## Interview Talking Points
+## Engineering Talking Points
 
 - Why queues protect systems under burst traffic.
 - How dead-letter queues support reliability.
