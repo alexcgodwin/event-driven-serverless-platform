@@ -33,6 +33,19 @@ A serverless platform project demonstrating event ingestion, queue-based decoupl
 powershell -ExecutionPolicy Bypass -File scripts/validate.ps1
 ```
 
+## Engineering Controls
+
+| Control | Senior engineering concern |
+| --- | --- |
+| Resilience | Queue buffering and producer-worker decoupling. |
+| Processing | Idempotent, retry-oriented handler behavior. |
+| Failure | Dead-letter isolation, inspection and replay. |
+| Operations | Audit records and traceable event outcomes. |
+
+## Failure and Review Model
+
+The design considers duplicate delivery, processing timeout, poison messages, downstream unavailability and replay safety. These are first-class workflow states.
+
 ## Completed Result
 
 A structured event-driven serverless platform with asynchronous processing, failure isolation, audit visibility and cost-aware validation.
