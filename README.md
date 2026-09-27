@@ -1,37 +1,31 @@
 # Event-Driven Serverless Platform
 
-A serverless architecture project that models event ingestion, queue-based decoupling, function processing, audit output, and dead-letter handling.
+A serverless platform project demonstrating event ingestion, queue-based decoupling, asynchronous processing, audit output, retries and dead-letter handling.
 
-## Problem
+## What I Built
 
-Synchronous systems are brittle when workloads spike or downstream services slow down. This project shows a low-cost event-driven pattern where work is accepted quickly, buffered safely, processed asynchronously, and tracked with operational evidence.
+- Asynchronous event-processing pattern with queue-based decoupling.
+- Function handler model with retry and dead-letter responsibilities.
+- Audit output for traceability from intake through processing result.
+- Validation notes covering normal processing, failure handling and cost boundaries.
 
-## Architecture
+## Processing Workflow
 
-```mermaid
-flowchart TD
-    A[Event Source] --> B[Queue]
-    B --> C[Function Processor]
-    C --> D[Storage]
-    C --> E[Audit Log]
-    B --> F[Dead Letter Queue]
-```
-
-## What This Project Demonstrates
-
-- Serverless and event-driven architecture design.
-- Queue-based decoupling and retry thinking.
-- Function handler implementation.
-- Audit and dead-letter workflow awareness.
-- Cost-controlled serverless model with reusable validation evidence.
+1. Accept the event without coupling directly to the worker.
+2. Buffer work in a queue during bursts or downstream delays.
+3. Process the event asynchronously with a function handler.
+4. Record the result for operational review.
+5. Retry failures and route exhausted events to dead-letter handling.
+6. Validate the complete lifecycle.
 
 ## Repository Structure
 
 | Path | Purpose |
 | --- | --- |
-| `terraform/` | Event-flow outputs and infrastructure model. |
+| `terraform/` | Event-flow infrastructure model. |
 | `src/` | Serverless handler code. |
-| `docs/evidence/` | Validation summary and proof notes. |
+| `docs/evidence/` | Validation and operational proof. |
+| `scripts/` | Repeatable validation commands. |
 
 ## Validation
 
@@ -39,13 +33,10 @@ flowchart TD
 powershell -ExecutionPolicy Bypass -File scripts/validate.ps1
 ```
 
-## Cost Control
+## Completed Result
 
-This project uses a controlled validation model: event flow, handler logic, audit output and failure handling are maintained from code while cost exposure is kept under control.
+A structured event-driven serverless platform with asynchronous processing, failure isolation, audit visibility and cost-aware validation.
 
-## Engineering Talking Points
+## Engineering Value
 
-- Why queues protect systems under burst traffic.
-- How dead-letter queues support reliability.
-- How audit logs help debugging and compliance.
-- Why serverless can be strong for low-volume event workflows.
+This project demonstrates event lifecycle design, retry behavior, failure isolation, auditability, repeatability and operational discipline.
