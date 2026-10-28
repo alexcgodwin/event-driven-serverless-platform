@@ -4,3 +4,12 @@
 .terraform.lock.hcl
 .DS_Store
 node_modules/
+
+# Terraform generated packages and local state
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/*.tfvars
+!**/*.tfvars.example
+**/worker.zip
+**/ingest.zip
