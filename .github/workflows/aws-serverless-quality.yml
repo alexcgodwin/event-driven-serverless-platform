@@ -1,0 +1,31 @@
+name: AWS serverless code and infrastructure verification
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  handler-tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify both reference and AWS handlers offline
+        run: node --test tests/*.test.js tests/*.test.mjs
+  aws-terraform:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: 1.15.8
+      - name: Format
+        run: terraform -chdir=terraform/aws fmt -check -recursive
+      - name: Provider init without backend
+        run: terraform -chdir=terraform/aws init -backend=false -input=false
+      - name: Validate AWS infrastructure contracts
+        run: terraform -chdir=terraform/aws validate

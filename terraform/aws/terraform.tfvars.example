@@ -1,0 +1,4 @@
+aws_region = "ca-central-1"
+project = "eds-platform"
+environment = "dev"
+alert_topic_arn = ""

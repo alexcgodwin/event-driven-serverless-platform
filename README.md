@@ -55,3 +55,9 @@ The project is about reliability shape, not just a function. The important decis
 ## Status
 
 Validated as a cost-controlled serverless design with reusable handler, infrastructure model, runbook and evidence artifacts.
+
+## Deployable AWS ingestion and asynchronous processing
+
+The existing conceptual Terraform root remains intact. A new [AWS infrastructure stack](terraform/aws/) defines IAM-authorized API Gateway ingress, a separate validator Lambda, encrypted SQS with dead-letter handling, a worker Lambda with partial batch retry, private versioned S3 audit storage, DynamoDB idempotency tracking, limited IAM identities and CloudWatch alarms.
+
+The additional [offline handler tests](tests/aws-pipeline.test.mjs) exercise invalid payloads, queue failure, durable audit ordering, duplicate processing and failed-item retries. They do not create cloud resources. No infrastructure is applied, and the system is not presented as having achieved real availability or latency targets. Read the [deployment, threat model and failure test criteria](docs/DEPLOYABLE_AWS.md) before any approved Terraform apply.
